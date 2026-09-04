@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV de la MCS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>CV de la MCS</h1>
+
+  <div class="card" data-cv="curriculum1.html">
+    <img src="https://via.placeholder.com/80" alt="Foto de perfil">
+    <div class="card-info">
+      <h2>Nombre y Apellido 1</h2>
+      <p>Haz clic para ver el currículum completo de la primera persona.</p>
+    </div>
+  </div>
+
+  <div class="card" data-cv="curriculum2.html">
+    <img src="https://via.placeholder.com/80" alt="Foto de perfil">
+    <div class="card-info">
+      <h2>Nombre y Apellido 2</h2>
+      <p>Haz clic para ver el currículum completo de la segunda persona.</p>
+    </div>
+  </div>
+
+  <div class="card" data-cv="curriculum3.html">
+    <img src="https://via.placeholder.com/80" alt="Foto de perfil">
+    <div class="card-info">
+      <h2>Nombre y Apellido 3</h2>
+      <p>Haz clic para ver el currículum completo de la tercera persona.</p>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <iframe id="cv-frame" src=""></iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

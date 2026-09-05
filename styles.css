@@ -86,14 +86,27 @@ section h2 { margin-bottom: 1.5rem; color: var(--ink); font-size: 2rem; }
 
 .cards, .integrantes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
 .card, .integrante {
+	border: 2px solid var(--line);
+	cursor: pointer;
 	padding: 1.75rem;
 	border-radius: 1rem;
 	background: var(--paper);
 	box-shadow: var(--sombra);
-	transition: transform .2s, box-shadow .2s;
+	transition: border-color .2s, transform .2s, box-shadow .2s;
 }
 .card + .card { margin-top: 2.5rem; }
-.card:hover, .integrante:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(24,36,61,.18); }
+.card::after {
+	content: "Ver CV ->";
+	display: inline-block;
+	margin-top: 1rem;
+	padding: .55rem .9rem;
+	border-radius: 6px;
+	color: var(--paper);
+	background: var(--primary);
+	font-weight: 700;
+}
+.card:hover, .integrante:hover { border-color: var(--primary); transform: translateY(-6px); box-shadow: 0 16px 32px rgba(24,36,61,.18); }
+.card:hover::after { background: var(--ink); }
 .card:nth-child(3n+1) { border-top: 5px solid var(--primary); }
 .card:nth-child(3n+2) { border-top: 5px solid var(--line); }
 .card:nth-child(3n) { border-top: 5px solid var(--muted); }

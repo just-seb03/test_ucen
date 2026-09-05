@@ -1,11 +1,11 @@
 /* Estilos compartidos para el index */
 :root {
-	--ink: #18243d;
-	--muted: #5a48d6;
-	--primary: #5a48d6;
-	--line: #5a48d6;
-	--paper: #fff;
-	--background: #18243d;
+    --ink: #18243d;
+    --muted: #5a48d6;
+    --primary: #5a48d6;
+    --line: #5a48d6;
+    --paper: #fff;
+    --background: #f4f5f9;
 	--sombra: 0 12px 30px rgba(24, 36, 61, .12);
 }
 
@@ -83,7 +83,8 @@ main { max-width: 1120px; margin: -2rem auto 0; padding: 0 1.25rem 4rem; positio
 section { margin-top: 4rem; }
 section h2 { margin-bottom: 1.5rem; color: var(--ink); font-size: 2rem; }
 
-.cards, .integrantes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+.cards, .integrantes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
 .card, .integrante {
 	padding: 1.75rem;
 	border-radius: 1rem;
@@ -91,6 +92,7 @@ section h2 { margin-bottom: 1.5rem; color: var(--ink); font-size: 2rem; }
 	box-shadow: var(--sombra);
 	transition: transform .2s, box-shadow .2s;
 }
+.card + .card { margin-top: 2.5rem; }
 .card:hover, .integrante:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(24,36,61,.18); }
 .card:nth-child(3n+1) { border-top: 5px solid var(--primary); }
 .card:nth-child(3n+2) { border-top: 5px solid var(--line); }

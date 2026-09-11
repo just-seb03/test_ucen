@@ -27,16 +27,16 @@ a {
   background: var(--paper);
   box-shadow: 0 20px 60px rgba(30, 39, 72, 0.1);
   display: grid;
-  grid-template-columns: 295px minmax(0, 1fr);
-  margin: 38px auto;
-  max-width: 1050px;
+  grid-template-columns: 28% minmax(0, 72%);
+  margin: 3.6% auto;
+  width: 90%;
   min-height: 1300px;
 }
 
 .sidebar {
   background: #202b49;
   color: #fff;
-  padding: 48px 30px;
+  padding: 4.57% 2.86%;
 }
 
 .profile {
@@ -52,10 +52,10 @@ a {
   display: flex;
   font-size: 26px;
   font-weight: 800;
-  height: 92px;
+  aspect-ratio: 1;
   justify-content: center;
   margin-bottom: 22px;
-  width: 92px;
+  width: 39%;
 }
 
 .profile h1 {
@@ -149,7 +149,7 @@ a {
 }
 
 .content {
-  padding: 55px 58px;
+  padding: 7.28% 7.68%;
 }
 
 .back-link {
@@ -159,10 +159,10 @@ a {
   display: block;
   font-size: 13px;
   font-weight: 700;
-  left: 20px;
+  left: 2%;
   padding: 10px 15px;
   position: fixed;
-  top: 20px;
+  top: 2%;
   text-decoration: none;
   transition: background .2s, transform .2s;
   z-index: 10;
@@ -170,7 +170,6 @@ a {
 
 .back-link:hover {
   background: var(--ink);
-  transform: translateY(-2px);
 }
 
 .summary {
@@ -192,8 +191,8 @@ a {
 
 .timeline-item {
   display: grid;
-  gap: 25px;
-  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 3.3%;
+  grid-template-columns: 16% minmax(0, 1fr);
   margin-top: 24px;
 }
 
@@ -232,7 +231,7 @@ a {
 
 .project-grid {
   display: grid;
-  gap: 18px;
+  gap: 2.4%;
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -251,7 +250,7 @@ a {
 
   .sidebar,
   .content {
-    padding: 35px 24px;
+    padding: 7% 6%;
   }
 
   .timeline-item {

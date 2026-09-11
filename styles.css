@@ -94,7 +94,7 @@ section h2 { margin-bottom: 1.5rem; color: var(--ink); font-size: 2rem; }
 	box-shadow: var(--sombra);
 	transition: border-color .2s, transform .2s, box-shadow .2s;
 }
-.card + .card { margin-top: 2.5rem; }
+.card { margin-top: 2.5rem; }
 .card::after {
 	content: "Ver CV ->";
 	display: inline-block;

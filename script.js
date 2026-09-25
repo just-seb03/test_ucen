@@ -16,36 +16,21 @@ cards.forEach((card, index) => {
 const toggleBtn = document.getElementById('toggle-layout-btn');
 const cardsContainer = document.querySelector('.cards');
 
-toggleBtn.addEventListener('click', () => {
-  cardsContainer.classList.toggle('vertical-layout');
-  
-  if (cardsContainer.classList.contains('vertical-layout')) {
-    toggleBtn.textContent = 'Cambiar a vista horizontal';
-  } else {
-    toggleBtn.textContent = 'Cambiar a vista vertical';
-  }
-});
+const darkModeBtn = document.getElementById('toggle-dark-mode');
 
-// ===== LÓGICA DEL BOTÓN DE FUENTE ALEATORIA =====
-const randomFontBtn = document.getElementById('random-font-btn');
+if (darkModeBtn) {
+  darkModeBtn.addEventListener('click', () => {
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+    darkModeBtn.textContent = isDarkMode ? 'Modo claro' : 'Modo oscuro';
+    darkModeBtn.setAttribute('aria-label', isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro');
+  });
+}
 
-// Arreglo de fuentes disponibles
-const fonts = [
-  "'Arial', sans-serif",
-  "'Courier New', monospace",
-  "'Georgia', serif",
-  "'Times New Roman', serif",
-  "'Verdana', sans-serif",
-  "'Tahoma', sans-serif",
-  "'Trebuchet MS', sans-serif",
-  "'Impact', sans-serif",
-  "'Comic Sans MS', cursive",
-  "'Lucida Console', monospace"
-];
-
-randomFontBtn.addEventListener('click', () => {
-  // Selecciona un índice aleatorio basado en la longitud del arreglo
-  const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-  // Aplica la fuente al cuerpo del documento
-  document.body.style.fontFamily = randomFont;
-});
+if (toggleBtn && cardsContainer) {
+  toggleBtn.addEventListener('click', () => {
+    cardsContainer.classList.toggle('vertical-layout');
+    toggleBtn.textContent = cardsContainer.classList.contains('vertical-layout')
+      ? 'Cambiar a vista horizontal'
+      : 'Cambiar a vista vertical';
+  });
+}

@@ -1,13 +1,14 @@
 :root {
-  --ink: #18243d;
-  --muted: #66718a;
-  --primary: #5a48d6;
-  --line: #e5e8f0;
-  --paper: #fff;
-  --background: #f4f5f9;
-  --sidebar: #202b49;
-  --project: #fafaff;
-  --shadow: rgba(30, 39, 72, 0.1);
+  --ink: #2c3e50;
+  --muted: #7f8c8d;
+  --primary: #3498db;
+  --primary-hover: #2980b9;
+  --line: #e0e0e0;
+  --paper: #ffffff;
+  --background: #f4f6f8;
+  --sidebar: #2c3e50;
+  --project: #f4f6f8;
+  --shadow: rgba(0, 0, 0, 0.1);
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-family: var(--font-sans);
 }
@@ -24,13 +25,13 @@ body {
 }
 
 body.dark-mode {
-  --ink: #edf0ff;
-  --muted: #b9c0d4;
-  --line: #3b4562;
-  --paper: #252d43;
-  --background: #111827;
-  --sidebar: #182137;
-  --project: #303951;
+  --ink: #f1f3f5;
+  --muted: #c2c7cc;
+  --line: #454d56;
+  --paper: #2d333b;
+  --background: #1b1f23;
+  --sidebar: #2c3e50;
+  --project: #343b44;
   --shadow: rgba(0, 0, 0, 0.3);
 }
 
@@ -52,7 +53,7 @@ body.dark-mode {
 }
 
 .theme-toggle:hover {
-  background: var(--ink);
+  background: var(--primary-hover);
   transform: translateY(-2px);
 }
 
@@ -103,7 +104,7 @@ a {
 }
 
 .role {
-  color: #c9cbe2;
+  color: #bdc3c7;
   font-size: 14px;
   line-height: 1.5;
   margin: 10px 0 0;
@@ -120,7 +121,7 @@ a {
 
 .side-section h2,
 .section-label {
-  color: #9387ff;
+  color: var(--primary);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -138,7 +139,7 @@ a {
 
 .contact-list li {
   align-items: center;
-  color: #d7d9e8;
+  color: #ecf0f1;
   display: flex;
   font-size: 12px;
   gap: 10px;
@@ -146,7 +147,7 @@ a {
 }
 
 .contact-list li > span:first-child {
-  color: #a79dff;
+  color: var(--primary);
   flex: 0 0 20px;
   font-size: 12px;
   font-weight: 800;
@@ -166,13 +167,13 @@ a {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 5px;
-  color: #e3e4f0;
+  color: #ecf0f1;
   font-size: 11px;
   padding: 7px 9px;
 }
 
 .language {
-  color: #d7d9e8;
+  color: #ecf0f1;
   display: flex;
   font-size: 13px;
   justify-content: space-between;
@@ -180,7 +181,7 @@ a {
 }
 
 .language strong {
-  color: #aeb0ca;
+  color: #bdc3c7;
   font-size: 11px;
   font-weight: 500;
 }

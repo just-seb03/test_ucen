@@ -14,6 +14,14 @@ cards.forEach((card, index) => {
 const toggleBtn = document.getElementById('toggle-layout-btn');
 const cardsContainer = document.querySelector('.cards');
 
+const darkModeBtn = document.getElementById('toggle-dark-mode');
+
+darkModeBtn.addEventListener('click', () => {
+  const isDarkMode = document.body.classList.toggle('dark-mode');
+  darkModeBtn.textContent = isDarkMode ? 'Modo claro' : 'Modo oscuro';
+  darkModeBtn.setAttribute('aria-label', isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro');
+});
+
 toggleBtn.addEventListener('click', () => {
   // Alterna (añade o quita) la clase 'vertical-layout' en el contenedor
   cardsContainer.classList.toggle('vertical-layout');

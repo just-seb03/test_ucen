@@ -3,7 +3,9 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f6f8; /* Color de fondo claro */
+  background-color: #f4f6f8;
+  /* Se agrega una transición suave para cuando la fuente cambie */
+  transition: font-family 0.3s ease; 
 }
 
 header {
@@ -27,8 +29,9 @@ main {
   padding: 30px 20px;
 }
 
-/* ===== ESTILO DEL BOTÓN ===== */
-#toggle-layout-btn {
+/* ===== ESTILO DE LOS BOTONES ===== */
+#toggle-layout-btn,
+#random-font-btn {
   background-color: #3498db;
   color: white;
   border: none;
@@ -39,33 +42,31 @@ main {
   transition: background-color 0.3s ease;
 }
 
-#toggle-layout-btn:hover {
+#toggle-layout-btn:hover,
+#random-font-btn:hover {
   background-color: #2980b9;
 }
 
 /* ===== CONTENEDOR DE TARJETAS (LAYOUTS) ===== */
-
-/* 1. Vista horizontal (por defecto) */
 .cards {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap; /* Permite que las tarjetas bajen si la pantalla es muy pequeña */
+  flex-wrap: wrap; 
   gap: 20px;
-  transition: all 0.4s ease; /* Transición suave entre layouts */
+  transition: all 0.4s ease; 
 }
 
-/* 2. Vista vertical (cuando se activa desde JavaScript) */
 .cards.vertical-layout {
   flex-direction: column;
-  align-items: center; /* Centra las tarjetas en la columna */
+  align-items: center; 
 }
 
 /* ===== ESTILOS INDIVIDUALES DE LAS TARJETAS ===== */
 .card {
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
   width: 320px;
   padding: 25px 20px;
   text-align: center;
@@ -74,10 +75,9 @@ main {
   border: 1px solid #e0e0e0;
 }
 
-/* Efecto al pasar el mouse por encima de la tarjeta */
 .card:hover {
-  transform: translateY(-5px); /* Eleva ligeramente la tarjeta */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Aumenta la sombra */
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
   border-color: #3498db;
 }
 

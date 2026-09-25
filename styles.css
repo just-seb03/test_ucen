@@ -1,70 +1,97 @@
+/* ===== VARIABLES NEUMÓRFICAS (MODO CLARO) ===== */
 :root {
-  --background-color: #f4f6f8;
-  --card-color: #ffffff;
+  --background-color: #e0e5ec; /* Fondo base (gris-azulado claro) */
+  --shadow-light: #ffffff;     /* Sombra superior izquierda (luz) */
+  --shadow-dark: #a3b1c6;      /* Sombra inferior derecha (oscuridad) */
   --text-color: #2c3e50;
   --muted-text-color: #7f8c8d;
-  --border-color: #e0e0e0;
+  --accent-color: #3498db;     /* Color para detalles y botones */
 }
 
+/* ===== VARIABLES NEUMÓRFICAS (MODO OSCURO) ===== */
+body.dark-mode {
+  --background-color: #292d32; /* Fondo base oscuro */
+  --shadow-light: #393e46;     /* Sombra de luz adaptada a oscuro */
+  --shadow-dark: #191b1e;      /* Sombra de oscuridad profunda */
+  --text-color: #f1f3f5;
+  --muted-text-color: #9aa0a6;
+  --accent-color: #4facfe;
+}
+
+/* ===== ESTILOS GENERALES ===== */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   min-height: 100vh;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* El Header ahora parece un panel extruido desde arriba */
 header {
-  background-color: #2c3e50;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark), 
+    -8px -8px 16px var(--shadow-light);
+  margin-bottom: 40px;
+  transition: all 0.4s ease;
 }
 
 .hero h1 {
   margin: 0 0 10px 0;
+  font-weight: 700;
 }
 
 .hero p {
   margin: 0;
   font-size: 1.1em;
-  color: #bdc3c7;
+  color: var(--muted-text-color);
 }
 
 main {
-  padding: 30px 20px;
+  padding: 0 20px 40px 20px;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
+/* ===== ESTILO DE LOS BOTONES ===== */
+/* Se eliminan los contenedores extra para aplicar los estilos directamente a los botones */
 button {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--accent-color);
+  font-weight: 600;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 50px; /* Bordes redondeados modernos (estilo pastilla) */
+  padding: 12px 25px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  /* Efecto saliente */
+  box-shadow: 
+    5px 5px 10px var(--shadow-dark), 
+    -5px -5px 10px var(--shadow-light);
 }
 
-button:hover {
-  background-color: #2980b9;
+/* Efecto presionado (hundido) al pasar el mouse o hacer clic */
+button:hover, 
+button:active {
+  color: var(--text-color);
+  box-shadow: 
+    inset 5px 5px 10px var(--shadow-dark), 
+    inset -5px -5px 10px var(--shadow-light);
 }
 
+/* ===== CONTENEDOR DE TARJETAS (LAYOUTS) ===== */
 .cards {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap; /* Permite que las tarjetas bajen si la pantalla es muy pequeña */
-  gap: 24px;
+  flex-wrap: wrap; 
+  gap: 30px; /* Separación ampliada para las sombras */
   transition: all 0.4s ease;
 }
 
@@ -73,45 +100,46 @@ button:hover {
   align-items: center;
 }
 
-body.dark-mode {
-    --background-color: #1b1f23;
-    --card-color: #2d333b;
-    --text-color: #f1f3f5;
-    --muted-text-color: #c2c7cc;
-    --border-color: #454d56;
-}
-
+/* ===== ESTILOS INDIVIDUALES DE LAS TARJETAS ===== */
 .card {
-  background-color: var(--card-color);
+  background-color: var(--background-color);
   color: var(--text-color);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 20px;
+  border: none; /* En neumorfismo no hay bordes duros */
+  /* Efecto saliente voluminoso */
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark), 
+    -8px -8px 16px var(--shadow-light);
   width: 320px;
-  padding: 25px 20px;
+  padding: 30px 20px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
 }
 
+/* Efecto de levitación extra al pasar el cursor */
 .card:hover {
-  transform: translateY(-5px); /* Eleva ligeramente la tarjeta */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Aumenta la sombra */
+  transform: translateY(-5px);
+  box-shadow: 
+    12px 12px 20px var(--shadow-dark), 
+    -12px -12px 20px var(--shadow-light);
 }
 
 .card-info h2 {
   margin: 0 0 10px 0;
   color: var(--text-color);
   font-size: 1.4em;
+  font-weight: 600;
 }
 
 .card-info p {
   margin: 0;
   color: var(--muted-text-color);
   font-size: 1em;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .card {
     box-sizing: border-box;

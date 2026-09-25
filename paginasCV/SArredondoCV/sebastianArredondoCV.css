@@ -12,10 +12,12 @@
   box-sizing: border-box;
 }
 
+/* Agrega solo la línea de transition al bloque body de tu CSS actual */
 body {
   background: var(--background);
   color: var(--ink);
   margin: 0;
+  transition: font-family 0.3s ease; /* ESTA LÍNEA ES NUEVA */
 }
 
 .cv {
@@ -268,3 +270,4 @@ a {
     margin: 0;
   }
 }
+

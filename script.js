@@ -1,3 +1,4 @@
+// ===== LÓGICA DE NAVEGACIÓN =====
 const cards = document.querySelectorAll('.card');
 const cvPaths = [
   'paginasCV/SArredondoCV/sebastianArredondoCV.html',
@@ -11,6 +12,7 @@ cards.forEach((card, index) => {
   });
 });
 
+// ===== LÓGICA DEL BOTÓN DE CAMBIO DE VISTA =====
 const toggleBtn = document.getElementById('toggle-layout-btn');
 const cardsContainer = document.querySelector('.cards');
 

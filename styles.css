@@ -1,9 +1,18 @@
-/* ===== ESTILOS GENERALES ===== */
+:root {
+  --background-color: #f4f6f8;
+  --card-color: #ffffff;
+  --text-color: #2c3e50;
+  --muted-text-color: #7f8c8d;
+  --border-color: #e0e0e0;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f4f6f8; /* Color de fondo claro */
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
@@ -27,8 +36,15 @@ main {
   padding: 30px 20px;
 }
 
-/* ===== ESTILO DEL BOTÓN ===== */
-#toggle-layout-btn {
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+button {
   background-color: #3498db;
   color: white;
   border: none;
@@ -39,66 +55,35 @@ main {
   transition: background-color 0.3s ease;
 }
 
-#toggle-layout-btn:hover {
+button:hover {
   background-color: #2980b9;
 }
 
-/* ===== CONTENEDOR DE TARJETAS (LAYOUTS) ===== */
-
-/* 1. Vista horizontal (por defecto) */
 .cards {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap; /* Permite que las tarjetas bajen si la pantalla es muy pequeña */
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  transition: all 0.4s ease; /* Transición suave entre layouts */
+  gap: 24px;
+  transition: all 0.4s ease;
 }
 
-/* 2. Vista vertical (cuando se activa desde JavaScript) */
 .cards.vertical-layout {
   flex-direction: column;
-  align-items: center; /* Centra las tarjetas en la columna */
+  align-items: center;
 }
 
-  body.dark-mode {
+body.dark-mode {
     --background-color: #1b1f23;
     --card-color: #2d333b;
     --text-color: #f1f3f5;
     --muted-text-color: #c2c7cc;
     --border-color: #454d56;
+}
 
-/* ===== ESTILOS INDIVIDUALES DE LAS TARJETAS ===== */
 .card {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 10;
-    padding: 10px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 5px;
-    background-color: #f1f3f5;
-    color: #1b1f23;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .dark-mode-btn:hover {
-    background-color: #dfe3e6;
-  }
-
-  body.dark-mode .dark-mode-btn {
-    background-color: #343b44;
-    color: #f1f3f5;
-  }
-
-  body.dark-mode .dark-mode-btn:hover {
-    background-color: #454d56;
-  }
-  background-color: white;
+  background-color: var(--card-color);
+  color: var(--text-color);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
   width: 320px;
@@ -106,25 +91,31 @@ main {
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
 }
-    border: 1px solid var(--border-color);
-/* Efecto al pasar el mouse por encima de la tarjeta */
+
 .card:hover {
   transform: translateY(-5px); /* Eleva ligeramente la tarjeta */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Aumenta la sombra */
-    color: var(--text-color);
 }
 
 .card-info h2 {
   margin: 0 0 10px 0;
-    color: var(--muted-text-color);
+  color: var(--text-color);
   font-size: 1.4em;
 }
 
 .card-info p {
   margin: 0;
-  color: #7f8c8d;
+  color: var(--muted-text-color);
   font-size: 1em;
   line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 320px;
+  }
 }

@@ -1,95 +1,40 @@
-// ==========================================
-// CÓDIGO PARA LA PÁGINA PRINCIPAL (index.html)
-// ==========================================
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Currículum vitae de S. Arredondo">
+  <title>CV | S. Arredondo</title>
+  <link rel="stylesheet" href="sebastianArredondoCV.css">
+</head>
+<body>
+  <main class="cv">
+    <!-- El contenido de tu CV (aside, sections, articles...) se mantiene igual -->
+    <aside class="sidebar">
+      <div class="profile"><div class="avatar">SA</div><h1>S. Arredondo</h1><p class="role">Analista de datos</p></div>
+      <section class="side-section"><h2>Contacto</h2><ul class="contact-list">
+    <li><span aria-hidden="true">@</span><a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></li>
+    <li><span aria-hidden="true">☎</span><a href="tel:+56000000000">+56 9 0000 0000</a></li>
+    <li><span aria-hidden="true">⌖</span><span>Santiago, Chile</span></li>
+    <li><span aria-hidden="true">in</span><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">linkedin.com/in/sarredondo</a></li>
+    <li><span aria-hidden="true">GH</span><a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com/sarredondo</a></li>
+  </ul></section>
+      <section class="side-section"><h2>Habilidades</h2><ul class="tag-list"><li>Python</li><li>SQL</li><li>Power BI</li><li>Excel</li><li>Visualización</li><li>Estadística</li></ul></section>
+      <section class="side-section"><h2>Idiomas</h2><div class="language"><span>Español</span><strong>Nativo</strong></div><div class="language"><span>Inglés</span><strong>Intermedio</strong></div></section>
+    </aside>
+    <section class="content">
+      <a class="back-link" href="../../index.html">&larr; Volver al inicio</a>
+      <section class="summary"><p class="section-label">Perfil profesional</p><p>Analista de datos orientado/a a transformar información en decisiones claras. Tengo experiencia limpiando datos, construyendo reportes y comunicando hallazgos a equipos técnicos y de negocio.</p></section>
+      <section class="cv-section"><p class="section-label">Experiencia</p>
+        <article class="timeline-item"><div class="timeline-date">2023 — Actualidad</div><div><h2>Analista de datos</h2><p class="company">Empresa de Servicios · Santiago</p><p>Construcción de indicadores, automatización de reportes y análisis de tendencias para apoyar la planificación del negocio.</p></div></article>
+        <article class="timeline-item"><div class="timeline-date">2021 — 2023</div><div><h2>Asistente de inteligencia de negocios</h2><p class="company">Consultoría Analítica · Santiago</p><p>Preparación de bases de datos, generación de dashboards y documentación de procesos de análisis.</p></div></article>
+      </section>
+      <section class="cv-section"><p class="section-label">Educación</p><article class="timeline-item"><div class="timeline-date">2017 — 2021</div><div><h2>Ingeniería en Información</h2><p class="company">Universidad de Ejemplo</p><p>Formación en análisis cuantitativo, bases de datos, programación y gestión de información.</p></div></article></section>
+      <section class="cv-section projects"><p class="section-label">Proyectos destacados</p><div class="project-grid"><article><h2>Dashboard comercial</h2><p>Panel de indicadores para monitorear ventas, conversión y rendimiento mensual.</p></article><article><h2>Reporte automatizado</h2><p>Flujo de procesamiento que reduce tareas manuales y mejora la disponibilidad de información.</p></article></div></section>
+    </section>
+  </main>
 
-const cardsContainer = document.querySelector('.cards');
-
-// Solo ejecuta esto si estamos en la página que tiene las tarjetas
-if (cardsContainer) {
-  
-  // 1. Lógica de navegación
-  const cards = document.querySelectorAll('.card');
-  const cvPaths = [
-    'paginasCV/SArredondoCV/sebastianArredondoCV.html',
-    'paginasCV/MCantuariasCV/maximilianoCantuariasCV.html',
-    'paginasCV/CVegaCV/cristianVegaCV.html'
-  ];
-
-  cards.forEach((card, index) => {
-    card.addEventListener('click', () => {
-      window.location.href = cvPaths[index];
-    });
-  });
-
-  // 2. Lógica del botón de cambio de vista (Horizontal/Vertical)
-  const toggleBtn = document.querySelector('#toggle-layout-btn');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-      cardsContainer.classList.toggle('vertical-layout');
-      if (cardsContainer.classList.contains('vertical-layout')) {
-        toggleBtn.textContent = 'Cambiar a vista horizontal';
-      } else {
-        toggleBtn.textContent = 'Cambiar a vista vertical';
-      }
-    });
-  }
-
-  // 3. Lógica del botón de fuente en el index
-  const randomFontBtn = document.querySelector('#random-font-btn');
-  if (randomFontBtn) {
-    randomFontBtn.addEventListener('click', () => {
-      const fonts = [
-        "'Arial', sans-serif", "'Courier New', monospace", "'Georgia', serif",
-        "'Times New Roman', serif", "'Verdana', sans-serif", "'Tahoma', sans-serif",
-        "'Trebuchet MS', sans-serif", "'Impact', sans-serif", "'Comic Sans MS', cursive"
-      ];
-      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-      document.body.style.fontFamily = randomFont;
-    });
-  }
-}
-
-
-// ==========================================
-// CÓDIGO PARA LA PÁGINA DEL CV (Cumple la rúbrica)
-// ==========================================
-
-// Seleccionamos el elemento de nuestra sección (toda la página/body) usando querySelector
-const paginaEntera = document.querySelector('body');
-// Seleccionamos específicamente la estructura del CV para evitar que cambie la fuente 
-// si estamos en el index (que ya tiene su propio botón para esto)
-const contenedorCV = document.querySelector('.cv');
-
-// Si existe el contenedor del CV (es decir, estamos en la página del currículum)
-if (contenedorCV) {
-  
-  // Usamos addEventListener para reaccionar al evento 'click' en cualquier parte del body
-  paginaEntera.addEventListener('click', (evento) => {
-    
-    // IMPORTANTE: Evitamos que el botón de "Volver al inicio" dispare el cambio de fuente 
-    // y en su lugar permita navegar normalmente.
-    if (evento.target.closest('.back-link')) {
-      return; 
-    }
-
-    // Arreglo de fuentes diferentes
-    const fuentesDisponibles = [
-      "'Courier New', monospace",
-      "'Georgia', serif",
-      "'Comic Sans MS', cursive",
-      "'Impact', sans-serif",
-      "'Lucida Console', monospace",
-      "Inter, ui-sans-serif, system-ui" // La fuente original por defecto
-    ];
-
-    // Seleccionar una fuente aleatoria
-    const fuenteAleatoria = fuentesDisponibles[Math.floor(Math.random() * fuentesDisponibles.length)];
-    
-    // Modificar el DOM: Actualizamos el valor CSS en pantalla (cambio de estilo)
-    paginaEntera.style.fontFamily = fuenteAleatoria;
-    
-    // Extra opcional para cumplir con "mostrar texto o actualizar un valor en pantalla":
-    // Podrías mostrar temporalmente en consola o en un alert la fuente seleccionada
-    console.log("Fuente cambiada a: " + fuenteAleatoria);
-  });
-}
+  <!-- NUEVO: Conectamos el script que está en la misma carpeta -->
+  <script src="interaccionCV.js"></script>
+</body>
+</html>

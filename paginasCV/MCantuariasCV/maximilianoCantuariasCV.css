@@ -242,6 +242,34 @@ a {
   padding: 18px;
 }
 
+.theme-toggle-btn {
+  margin-top: 18px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  width: 100%;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* Transición e Inversión de colores */
+html {
+  transition: filter 0.3s ease;
+}
+
+html.inverted {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 @media (max-width: 760px) {
   .cv {
     display: block;

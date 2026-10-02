@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar'
 import Title from '../components/Title'
 import ActionButtons from '../components/ActionButtons'
 import VinylRecord from '../components/VinylRecord'
@@ -7,13 +6,13 @@ import './Landing.css'
 export default function Landing() {
   return (
     <div className="landing-page">
-      {/* Vinyl record half covering the top half */}
-      <VinylRecord />
 
-      {/* Top Navbar with right-aligned Login button */}
-      <Navbar />
+      {/* TOP HALF: Vinyl record section */}
+      <div className="vinyl-section">
+        <VinylRecord />
+      </div>
 
-      {/* Main Content with Title and 2 Buttons */}
+      {/* BOTTOM HALF: Hero content */}
       <main id="main-content">
         <section className="hero-section">
           <div className="container hero-content">
@@ -22,6 +21,7 @@ export default function Landing() {
           </div>
         </section>
       </main>
+
     </div>
   )
 }

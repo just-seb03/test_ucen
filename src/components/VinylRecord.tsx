@@ -1,29 +1,40 @@
+import vinylSticker from '../assets/vinyl-sticker.jpg'
+
 export default function VinylRecord() {
   return (
-    <div className="vinyl-header-container" aria-hidden="true">
-      <div className="vinyl-half-wrapper">
-        <div className="vinyl-disk">
-          {/* Subtle spinning vinyl lines / grooves */}
-          <div className="vinyl-groove groove-1" />
-          <div className="vinyl-groove groove-2" />
-          <div className="vinyl-groove groove-3" />
-          <div className="vinyl-groove groove-4" />
-          <div className="vinyl-groove groove-5" />
-          
-          {/* Light reflection sheen */}
-          <div className="vinyl-sheen" />
-          <div className="vinyl-sheen sheen-opposite" />
+    <div className="vinyl-disk-wrapper">
+      {/* 20 grooves concéntricos */}
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className="vinyl-groove"
+          style={{ '--groove-i': i } as React.CSSProperties}
+        />
+      ))}
 
-          {/* Center Label */}
-          <div className="vinyl-label">
-            <div className="vinyl-label-ring" />
-            <div className="vinyl-center-hole" />
-            <div className="vinyl-label-text">LP • 33 RPM</div>
-          </div>
-        </div>
+      {/* Reflejo iridiscente arcoíris */}
+      <div className="vinyl-iridescent" />
+
+      {/* Brillo especular principal */}
+      <div className="vinyl-specular" />
+
+      {/* Brillo especular secundario */}
+      <div className="vinyl-specular-2" />
+
+      {/* Borde rim */}
+      <div className="vinyl-rim" />
+
+      {/* Sticker / etiqueta central — gira junto con el disco */}
+      <div className="vinyl-label">
+        <img
+          src={vinylSticker}
+          alt="NEXUS vinyl label"
+          className="vinyl-label-img"
+          draggable={false}
+        />
+        {/* Agujero central encima de la imagen */}
+        <div className="vinyl-label-hole" />
       </div>
-      {/* Soft gradient fade into content */}
-      <div className="vinyl-bottom-shadow" />
     </div>
   )
 }

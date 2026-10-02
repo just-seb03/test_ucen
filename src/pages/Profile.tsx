@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import VinylShelf, { type VinylData } from '../components/VinylShelf'
 import './Profile.css'
 
@@ -22,7 +22,36 @@ const profileDataMap: Record<string, ProfileData> = {
 
 export default function Profile() {
   const { usuario } = useParams<{ usuario: string }>()
+  const navigate = useNavigate();
   const [hoveredVinyl, setHoveredVinyl] = useState<VinylData | null>(null);
+  
+  // Estado para los likes que persiste en localStorage
+  const [likes, setLikes] = useState(() => {
+    const savedLikes = localStorage.getItem(`likes_${usuario}`);
+    return savedLikes ? parseInt(savedLikes, 10) : 0;
+  });
+
+  // Estado para saber si ya se dio like en esta sesión
+  const [hasLiked, setHasLiked] = useState(() => {
+    return sessionStorage.getItem(`hasLiked_${usuario}`) === 'true';
+  });
+
+  // Guardar likes cuando cambien
+  useEffect(() => {
+    localStorage.setItem(`likes_${usuario}`, likes.toString());
+  }, [likes, usuario]);
+
+  const handleLogout = () => {
+    navigate('/');
+  };
+
+  const handleLike = () => {
+    if (!hasLiked) {
+      setLikes(prev => prev + 1);
+      setHasLiked(true);
+      sessionStorage.setItem(`hasLiked_${usuario}`, 'true');
+    }
+  };
 
   // Obtenemos los datos del perfil actual o usamos valores por defecto
   const defaultData: ProfileData = { 
@@ -57,7 +86,7 @@ export default function Profile() {
       </div>
 
       {/* Botón de cerrar sesión */}
-      <button className="logout-btn dimmable">Cerrar Sesión</button>
+      <button className="logout-btn dimmable" onClick={handleLogout}>Cerrar Sesión</button>
 
       {/* Izquierda: Cuadro de Usuario y Bio */}
       <div className="user-info-left dimmable">
@@ -70,7 +99,13 @@ export default function Profile() {
         <div className="favorite-artist-container">
           <h4 className="favorite-artist-title">Artista Favorito</h4>
           <h2 className="favorite-artist-name">{data.artistaName}</h2>
-          <button className="like-btn">❤️ Dar Like</button>
+          <button 
+            className={`like-btn ${hasLiked ? 'liked' : ''}`} 
+            onClick={handleLike}
+            disabled={hasLiked}
+          >
+            {hasLiked ? `❤️ Te gusta (${likes})` : `❤️ Dar Like ${likes > 0 ? `(${likes})` : ''}`}
+          </button>
         </div>
       </div>
 

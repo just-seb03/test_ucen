@@ -149,10 +149,22 @@
   transition: all 0.3s ease;
 }
 
-.like-btn:hover {
+.like-btn:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.like-btn.liked {
+  background: rgba(255, 60, 60, 0.2);
+  border-color: rgba(255, 60, 60, 0.5);
+  color: #fff;
+  cursor: default;
+}
+
+.like-btn:disabled {
+  transform: none;
+  box-shadow: none;
 }
 
 /* ─── Dimming Logic on Vinyl Hover ─── */

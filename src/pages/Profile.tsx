@@ -15,9 +15,13 @@ const profileDataMap: Record<string, { covers: string[] }> = {
 export default function Profile() {
   const { usuario } = useParams<{ usuario: string }>()
 
+  const userKey = usuario
+    ? Object.keys(profileDataMap).find((k) => k.toLowerCase() === usuario.toLowerCase())
+    : undefined
+
   // Obtenemos los datos del perfil actual o usamos valores por defecto
-  const data = (usuario && profileDataMap[usuario])
-    ? profileDataMap[usuario]
+  const data = (userKey && profileDataMap[userKey])
+    ? profileDataMap[userKey]
     : { covers: ['/cover1.jpg', '/cover2.jpg', '/cover3.jpg'] }
 
   return (

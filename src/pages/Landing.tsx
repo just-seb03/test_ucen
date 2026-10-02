@@ -1,14 +1,14 @@
 import Navbar from '../components/Navbar'
 import Title from '../components/Title'
 import ActionButtons from '../components/ActionButtons'
+import VinylRecord from '../components/VinylRecord'
 import './Landing.css'
 
 export default function Landing() {
   return (
     <div className="landing-page">
-      {/* Ambient background glows */}
-      <div className="ambient-glow-1" aria-hidden="true" />
-      <div className="ambient-glow-2" aria-hidden="true" />
+      {/* Vinyl record half covering the top half */}
+      <VinylRecord />
 
       {/* Top Navbar with right-aligned Login button */}
       <Navbar />

@@ -20,6 +20,16 @@ export default function Login() {
 
     const cleanUser = usuario.trim()
 
+    if (cleanUser.toLowerCase() === 'cristian.vegag') {
+      if (password !== '12345') {
+        setError('Contraseña incorrecta para el usuario cristian.vegag')
+        return
+      }
+      authContext.iniciarSesion('Cris5604')
+      navigate('/perfil/Cris5604')
+      return
+    }
+
     if (cleanUser.toLowerCase() === 'mcantuarias') {
       if (password !== '1234567') {
         setError('Contraseña incorrecta para el usuario MCantuarias')

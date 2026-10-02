@@ -8,7 +8,7 @@ export default function LoginButton() {
       className="btn-login"
       aria-label="Login"
     >
-      Login
+      Inicia Sesión
     </Link>
   )
 }

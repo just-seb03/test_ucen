@@ -1,5 +1,3 @@
-import LoginButton from './LoginButton'
-
 export default function Navbar() {
   return (
     <header className="landing-header">
@@ -25,11 +23,6 @@ export default function Navbar() {
             </div>
             <span className="brand-name">Nexus</span>
           </a>
-
-          {/* Top Right Action: Login Button */}
-          <div className="nav-actions">
-            <LoginButton />
-          </div>
         </nav>
       </div>
     </header>

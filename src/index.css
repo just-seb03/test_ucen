@@ -76,3 +76,29 @@ button {
   background: none;
   cursor: pointer;
 }
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(
+    270deg,
+    #ffb3b3,
+    #ffd4a3,
+    #ededaa,
+    #99e8c4,
+    #b3e5fc,
+    #d4b3ff,
+    #ffc2e8,
+    #ffb3b3
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 5s ease infinite;
+  display: inline-block;
+}

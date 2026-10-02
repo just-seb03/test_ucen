@@ -9,6 +9,167 @@
   overflow: hidden;
 }
 
+/* ─── Profile Background ─── */
+.profile-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* ─── Cuadro de Usuario a la izquierda ─── */
+.user-info-left {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  z-index: 5;
+  width: 40%;
+  max-width: 450px;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.user-username-large {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.user-bio-text {
+  font-size: 1.1rem;
+  color: #ccc;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── Indicadores a la derecha (Artista Favorito) ─── */
+.stats-section-right {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  z-index: 5;
+  width: 40%;
+  max-width: 450px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.favorite-artist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  padding: 20px;
+}
+
+.favorite-artist-title {
+  color: #ccc;
+  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.favorite-artist-name {
+  color: #fff;
+  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  margin: 0 0 20px 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ─── Top Center Container ─── */
+.top-center-container {
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+/* ─── Buttons ─── */
+.logout-btn {
+  position: absolute;
+  top: 40px;
+  right: 5%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.like-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Dimming Logic on Vinyl Hover ─── */
+.dimmable {
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.profile-page:has(.vinyl-item:hover) .dimmable {
+  opacity: 0.15;
+  filter: blur(3px);
+}
+
+.profile-page:has(.vinyl-item:hover) .vinyl-item:not(:hover) {
+  opacity: 0.3;
+  filter: brightness(0.3) blur(2px);
+}
+
 /* ─── Estante pegado al fondo del viewport ─── */
 .vinyl-shelf {
   position: absolute;
@@ -16,13 +177,52 @@
   left: 0;
   right: 0;
   display: flex;
+  z-index: 5;
 }
 
 /* ─── Cada item ─── */
 .vinyl-item {
   flex: 1;
   position: relative;
-  height: 500px;        /* item ocupa 500px sobre el borde inferior */
+  height: 500px;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+  /* item ocupa 500px sobre el borde inferior */
+}
+
+/* ─── Hover Info del Vinilo ─── */
+.global-vinyl-hover-info {
+  position: absolute;
+  top: -10px; /* Adjust relative to container */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: max-content;
+}
+
+.global-vinyl-hover-info.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.vinyl-hover-title {
+  color: #fff;
+  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  font-size: 3rem;
+  font-style: italic;
+  margin: 0;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+
+.vinyl-hover-artist {
+  color: #ccc;
+  font-size: 1rem;
+  margin: 5px 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 /* ─────────────────────────────────────────
@@ -36,18 +236,17 @@
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   left: 50%;
-  bottom: -280px;           /* disco baja más bajo el borde del item */
+  bottom: -280px;
+  /* disco baja más bajo el borde del item */
   transform: translateX(-50%);
   z-index: 1;
   transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  background: radial-gradient(
-    circle at 37% 30%,
-    #2c2c2c 0%,
-    #1a1a1a 25%,
-    #0e0e0e 52%,
-    #040404 100%
-  );
+  background: radial-gradient(circle at 37% 30%,
+      #2c2c2c 0%,
+      #1a1a1a 25%,
+      #0e0e0e 52%,
+      #040404 100%);
   box-shadow:
     0 0 0 2px rgba(255, 255, 255, 0.07),
     0 30px 80px rgba(0, 0, 0, 0.95),
@@ -59,10 +258,10 @@
   position: absolute;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.04);
-  top:    calc(5%  + var(--gi, 0) * 4.8%);
-  left:   calc(5%  + var(--gi, 0) * 4.8%);
-  right:  calc(5%  + var(--gi, 0) * 4.8%);
-  bottom: calc(5%  + var(--gi, 0) * 4.8%);
+  top: calc(5% + var(--gi, 0) * 4.8%);
+  left: calc(5% + var(--gi, 0) * 4.8%);
+  right: calc(5% + var(--gi, 0) * 4.8%);
+  bottom: calc(5% + var(--gi, 0) * 4.8%);
 }
 
 /* Reflejo iridiscente sutil */
@@ -70,13 +269,11 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: conic-gradient(
-    from 210deg,
-    rgba(255, 60,  60,  0.06)   0deg,
-    rgba(  0, 185, 255, 0.06) 160deg,
-    rgba(110,   0, 255, 0.05) 240deg,
-    rgba(255, 60,  60,  0.06) 360deg
-  );
+  background: conic-gradient(from 210deg,
+      rgba(255, 60, 60, 0.06) 0deg,
+      rgba(0, 185, 255, 0.06) 160deg,
+      rgba(110, 0, 255, 0.05) 240deg,
+      rgba(255, 60, 60, 0.06) 360deg);
   mix-blend-mode: screen;
 }
 
@@ -87,12 +284,10 @@
   left: 10%;
   width: 28%;
   height: 17%;
-  background: radial-gradient(
-    ellipse at 35% 35%,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.15) 30%,
-    transparent 68%
-  );
+  background: radial-gradient(ellipse at 35% 35%,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      transparent 68%);
   border-radius: 50%;
   filter: blur(5px);
   mix-blend-mode: screen;
@@ -147,7 +342,8 @@
   left: 0;
   right: 0;
   height: 450px;
-  bottom: -350px;           /* Deja 100px de la portada visibles por defecto */
+  bottom: -350px;
+  /* Deja 100px de la portada visibles por defecto */
   z-index: 2;
   background: #111;
   overflow: hidden;

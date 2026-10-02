@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import VinylShelf, { type VinylData } from '../components/VinylShelf'
 import './Profile.css'
 
@@ -23,6 +24,15 @@ const profileDataMap: Record<string, ProfileData> = {
 export default function Profile() {
   const { usuario } = useParams<{ usuario: string }>()
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error('Profile debe ser utilizado dentro de un AuthProvider');
+  }
+
+  const { usuario: usuarioLogueado, logout } = authContext;
+  const isMiPerfil = usuario === usuarioLogueado?.nombre;
+
   const [hoveredVinyl, setHoveredVinyl] = useState<VinylData | null>(null);
   
   // Estado para los likes que persiste en localStorage
@@ -50,9 +60,13 @@ export default function Profile() {
   // Guardar likes cuando cambien
   useEffect(() => {
     localStorage.setItem(`likes_${usuario}`, likes.toString());
+    
+    // Rúbrica: registrar la última vez que se visitó el perfil
+    localStorage.setItem(`last_visit_${usuario}`, new Date().toLocaleString());
   }, [likes, usuario]);
 
   const handleLogout = () => {
+    logout(); // Limpiar el contexto
     navigate('/');
   };
 
@@ -94,6 +108,12 @@ export default function Profile() {
           <h2 className="vinyl-hover-title">{hoveredVinyl?.title}</h2>
           <h3 className="vinyl-hover-artist">{hoveredVinyl?.artist}</h3>
         </div>
+      </div>
+
+      {/* Header indicando sesión (Contexto) */}
+      <div className="session-indicator dimmable" style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 20, color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
+        Logueado como: <strong>{usuarioLogueado?.nombre || 'Invitado'}</strong> 
+        {!isMiPerfil && usuarioLogueado && ` (Viendo perfil de ${usuario})`}
       </div>
 
       {/* Botón de cerrar sesión */}

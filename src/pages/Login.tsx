@@ -8,6 +8,7 @@ export default function Login() {
   const navigate = useNavigate()
   const [usuario, setUsuario] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<string>('')
 
   if (!authContext) {
     throw new Error('Login debe ser utilizado dentro de un AuthProvider')
@@ -15,8 +16,22 @@ export default function Login() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    authContext.iniciarSesion(usuario)
-    navigate(`/perfil/${encodeURIComponent(usuario)}`)
+    setError('')
+
+    const cleanUser = usuario.trim()
+
+    if (cleanUser.toLowerCase() === 'mcantuarias') {
+      if (password !== '1234567') {
+        setError('Contraseña incorrecta para el usuario MCantuarias')
+        return
+      }
+      authContext.iniciarSesion('MCantuarias')
+      navigate('/perfil/MCantuarias')
+      return
+    }
+
+    authContext.iniciarSesion(cleanUser)
+    navigate(`/perfil/${encodeURIComponent(cleanUser)}`)
   }
 
   return (
@@ -40,6 +55,12 @@ export default function Login() {
         </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
+          {error && (
+            <div className="login-error" role="alert">
+              {error}
+            </div>
+          )}
+
           <div className="login-field">
             <label htmlFor="login-usuario">Nombre de usuario</label>
             <input
@@ -50,7 +71,10 @@ export default function Login() {
               required
               type="text"
               value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
+              onChange={(e) => {
+                setUsuario(e.target.value)
+                if (error) setError('')
+              }}
             />
           </div>
 
@@ -64,7 +88,10 @@ export default function Login() {
               required
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                if (error) setError('')
+              }}
             />
           </div>
 

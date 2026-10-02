@@ -10,6 +10,7 @@ export interface Usuario {
 export interface AuthContextType {
   usuario: Usuario | null
   login: (userData: Usuario) => void
+  iniciarSesion: (nombreUsuario: string) => void
   logout: () => void
 }
 
@@ -26,12 +27,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUsuario(userData)
   }
 
+  const iniciarSesion = (nombreUsuario: string) => {
+    login({ usuario: nombreUsuario, nombre: nombreUsuario })
+  }
+
   const logout = () => {
     setUsuario(null)
   }
 
   return (
-    <AuthContext.Provider value={{ usuario, login, logout }}>
+    <AuthContext.Provider value={{ usuario, login, iniciarSesion, logout }}>
       {children}
     </AuthContext.Provider>
   )

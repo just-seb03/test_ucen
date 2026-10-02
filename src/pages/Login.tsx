@@ -1,14 +1,22 @@
-import { useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useState, type FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
 import './Login.css'
 
 export default function Login() {
-  // Dos estados tipados con useState<string>
+  const authContext = useContext(AuthContext)
+  const navigate = useNavigate()
   const [usuario, setUsuario] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
+  if (!authContext) {
+    throw new Error('Login debe ser utilizado dentro de un AuthProvider')
+  }
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    authContext.iniciarSesion(usuario)
+    navigate(`/perfil/${encodeURIComponent(usuario)}`)
   }
 
   return (

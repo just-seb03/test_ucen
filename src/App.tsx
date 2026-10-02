@@ -1,19 +1,24 @@
-import { Route, Routes } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 
 function Perfil() {
-  return null
-}
-
-function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/perfil/:usuario" element={<Perfil />} />
-    </Routes>
+    <div style={{ padding: '40px', textAlign: 'center', color: '#fff' }}>
+      <h1>Perfil</h1>
+    </div>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/perfil/:usuario" element={<Perfil />} />
+      </Routes>
+    </AuthProvider>
+  )
+}

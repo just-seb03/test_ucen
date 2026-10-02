@@ -36,6 +36,17 @@ export default function Profile() {
     return sessionStorage.getItem(`hasLiked_${usuario}`) === 'true';
   });
 
+  // Estado para deshabilitar hover durante la animación de entrada
+  const [enableHover, setEnableHover] = useState(false);
+
+  useEffect(() => {
+    // La animación del shelf termina a los 1.6s (0.6s delay + 1s duración)
+    const timer = setTimeout(() => {
+      setEnableHover(true);
+    }, 1600);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Guardar likes cuando cambien
   useEffect(() => {
     localStorage.setItem(`likes_${usuario}`, likes.toString());
@@ -109,7 +120,10 @@ export default function Profile() {
         </div>
       </div>
 
-      <VinylShelf covers={data.covers} onHoverChange={setHoveredVinyl} />
+      {/* Estante de vinilos */}
+      <div style={{ pointerEvents: enableHover ? 'auto' : 'none' }}>
+        <VinylShelf covers={data.covers} onHoverChange={setHoveredVinyl} />
+      </div>
     </div>
   )
 }

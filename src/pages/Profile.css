@@ -1,0 +1,176 @@
+/* =========================================
+   Profile Page — Vinilo + Portada al fondo
+   ========================================= */
+
+.profile-page {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ─── Estante pegado al fondo del viewport ─── */
+.vinyl-shelf {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+/* ─── Cada item ─── */
+.vinyl-item {
+  flex: 1;
+  position: relative;
+  height: 500px;        /* item ocupa 500px sobre el borde inferior */
+}
+
+/* ─────────────────────────────────────────
+   DISCO DE VINILO  z-index:1 → detrás
+   Posicionado para que solo el arco
+   superior asoma sobre el viewport
+   ───────────────────────────────────────── */
+.vinyl-disc {
+  position: absolute;
+  width: 95%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  left: 50%;
+  bottom: -180px;           /* disco baja 180px bajo el borde del item */
+  transform: translateX(-50%);
+  z-index: 1;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  background: radial-gradient(
+    circle at 37% 30%,
+    #2c2c2c 0%,
+    #1a1a1a 25%,
+    #0e0e0e 52%,
+    #040404 100%
+  );
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.07),
+    0 30px 80px rgba(0, 0, 0, 0.95),
+    inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Surcos concéntricos */
+.vd-groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  top:    calc(5%  + var(--gi, 0) * 4.8%);
+  left:   calc(5%  + var(--gi, 0) * 4.8%);
+  right:  calc(5%  + var(--gi, 0) * 4.8%);
+  bottom: calc(5%  + var(--gi, 0) * 4.8%);
+}
+
+/* Reflejo iridiscente sutil */
+.vd-iridescent {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 210deg,
+    rgba(255, 60,  60,  0.06)   0deg,
+    rgba(  0, 185, 255, 0.06) 160deg,
+    rgba(110,   0, 255, 0.05) 240deg,
+    rgba(255, 60,  60,  0.06) 360deg
+  );
+  mix-blend-mode: screen;
+}
+
+/* Brillo especular */
+.vd-specular {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  width: 28%;
+  height: 17%;
+  background: radial-gradient(
+    ellipse at 35% 35%,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 30%,
+    transparent 68%
+  );
+  border-radius: 50%;
+  filter: blur(5px);
+  mix-blend-mode: screen;
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+
+/* Borde rim */
+.vd-rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+
+/* Etiqueta central */
+.vd-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #222 0%, #131313 100%);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.09),
+    0 0 0 4px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+/* Agujero */
+.vd-hole {
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────
+   PORTADA / SLEEVE  z-index:2 → delante
+   Por defecto completamente oculta.
+   En hover sube con translateY.
+   ───────────────────────────────────────── */
+.vinyl-sleeve {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 450px;
+  bottom: -450px;           /* portada completamente fuera del viewport */
+  z-index: 2;
+  background: #111;
+  overflow: hidden;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sleeve-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* ─────────────────────────────────────────
+   HOVER — portada sube, disco sube un poco
+   ───────────────────────────────────────── */
+.vinyl-item:hover .vinyl-disc {
+  /* sube el disco para mantener arco visible sobre la portada */
+  transform: translateX(-50%) translateY(-200px);
+}
+
+.vinyl-item:hover .vinyl-sleeve {
+  /* portada sube revelándose */
+  transform: translateY(-300px);
+}

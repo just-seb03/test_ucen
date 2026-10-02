@@ -40,12 +40,24 @@ export default function Login() {
 
       <section className="login-card" aria-labelledby="login-title">
         <Link className="login-home-link" to="/">
-          <span aria-hidden="true">←</span> Volver al inicio
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          Volver al inicio
         </Link>
 
         <div className="login-heading">
+          {/* Ícono: disco de vinilo simplificado */}
           <div className="login-mark" aria-hidden="true">
-            U
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="3" />
+              <line x1="12" y1="2" x2="12" y2="5" />
+              <line x1="12" y1="19" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="5" y2="12" />
+              <line x1="19" y1="12" x2="22" y2="12" />
+            </svg>
           </div>
           <p className="login-eyebrow">Bienvenido de nuevo</p>
           <h1 id="login-title">Inicia sesión</h1>

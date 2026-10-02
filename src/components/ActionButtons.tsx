@@ -1,18 +1,26 @@
 import LoginButton from './LoginButton'
-import { Link } from 'react-router-dom'
 
-export default function ActionButtons() {
+interface ActionButtonsProps {
+  opacity: number
+  isScrolled: boolean
+}
+
+export default function ActionButtons({ opacity, isScrolled }: ActionButtonsProps) {
   return (
     <div className="hero-cta-group">
-      <div className="hero-btn-row">
+      <div className="hero-btn-row" style={{ opacity }}>
         <LoginButton />
-        <Link to="#explorar" className="btn-explorar" id="hero-cta-explorar">
+        <a href="#explorar" className="btn-explorar" id="hero-cta-explorar">
           Explorar
-        </Link>
+        </a>
       </div>
 
-      {/* Scroll hint arrow */}
-      <div className="scroll-hint" aria-hidden="true">
+      <button
+        type="button"
+        className={`scroll-hint${isScrolled ? ' is-scrolled' : ''}`}
+        aria-label={isScrolled ? 'Volver al inicio' : 'Desplazarse hacia abajo'}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
         <svg
           className="scroll-arrow"
           width="24"
@@ -27,7 +35,7 @@ export default function ActionButtons() {
           <line x1="12" y1="5" x2="12" y2="19" />
           <polyline points="19 12 12 19 5 12" />
         </svg>
-      </div>
+      </button>
     </div>
   )
 }

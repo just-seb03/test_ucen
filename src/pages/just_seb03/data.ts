@@ -6,10 +6,10 @@ import bg from './bg.jpg'
 export const profileData = {
   bg: bg,
   artistaName: 'Virtual Riot',
-  bio: 'Amante de la electrónica y los bajos pesados. Siempre en busca del drop perfecto.',
+  bio: 'Me gusta que me duela el oido.',
   covers: [
-    { src: cover1, title: 'Energy Drink', artist: 'Virtual Riot' },
-    { src: cover2, title: 'One', artist: 'Swedish House Mafia' },
-    { src: cover3, title: 'Get Lucky', artist: 'Daft Punk' }
+    { src: cover1, title: 'Skitzofrenia Simulation', artist: 'Sewerslvt' },
+    { src: cover2, title: 'Tidal Memory Exo', artist: 'Iglooghost' },
+    { src: cover3, title: 'Da Makani', artist: 'Shakatak' }
   ]
 };

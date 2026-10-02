@@ -5,11 +5,11 @@ import bg from './bg.jpg'
 
 export const profileData = {
   bg: bg,
-  artistaName: 'Radiohead',
-  bio: 'Melancolía, guitarras distorsionadas y letras abstractas.',
+  artistaName: 'Siames',
+  bio: 'Me gustan las canciones lentas',
   covers: [
-    { src: cover1, title: 'Creep', artist: 'Radiohead' },
-    { src: cover2, title: 'Karma Police', artist: 'Radiohead' },
-    { src: cover3, title: 'No Surprises', artist: 'Radiohead' }
+    { src: cover1, title: 'Anything', artist: 'Adrianne Lenker' },
+    { src: cover2, title: 'Selfless', artist: 'The Strokes' },
+    { src: cover3, title: 'Yours & mine', artist: 'Zimmer90' }
   ]
 };

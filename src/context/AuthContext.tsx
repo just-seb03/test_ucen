@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
 
 export interface Usuario {
-  email: string
-  nombre?: string
   usuario?: string
+  email?: string
+  nombre?: string
   [key: string]: any
 }
 

@@ -1,7 +1,16 @@
+import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.css'
 
 export default function Login() {
+  // Dos estados tipados con useState<string>
+  const [usuario, setUsuario] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+  }
+
   return (
     <main className="login-page">
       <div className="login-glow" aria-hidden="true" />
@@ -18,20 +27,22 @@ export default function Login() {
           <p className="login-eyebrow">Bienvenido de nuevo</p>
           <h1 id="login-title">Inicia sesión</h1>
           <p className="login-description">
-            Ingresa tus datos para continuar.
+            Ingresa tus credenciales para continuar.
           </p>
         </div>
 
-        <form className="login-form" onSubmit={(event) => event.preventDefault()}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-field">
-            <label htmlFor="login-email">Correo electrónico</label>
+            <label htmlFor="login-usuario">Nombre de usuario</label>
             <input
-              autoComplete="email"
-              id="login-email"
-              name="email"
-              placeholder="nombre@correo.com"
+              autoComplete="username"
+              id="login-usuario"
+              name="usuario"
+              placeholder="Ingresa tu nombre de usuario"
               required
-              type="email"
+              type="text"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
             />
           </div>
 
@@ -44,6 +55,8 @@ export default function Login() {
               placeholder="Ingresa tu contraseña"
               required
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

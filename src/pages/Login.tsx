@@ -1,7 +1,24 @@
-import { Link } from 'react-router-dom'
+import { useContext, useState, type FormEvent } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
 import './Login.css'
 
 export default function Login() {
+  const authContext = useContext(AuthContext)
+  const navigate = useNavigate()
+  const [usuario, setUsuario] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+  if (!authContext) {
+    throw new Error('Login debe ser utilizado dentro de un AuthProvider')
+  }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    authContext.iniciarSesion(usuario)
+    navigate(`/perfil/${encodeURIComponent(usuario)}`)
+  }
+
   return (
     <main className="login-page">
       <div className="login-glow" aria-hidden="true" />
@@ -18,20 +35,22 @@ export default function Login() {
           <p className="login-eyebrow">Bienvenido de nuevo</p>
           <h1 id="login-title">Inicia sesión</h1>
           <p className="login-description">
-            Ingresa tus datos para continuar.
+            Ingresa tus credenciales para continuar.
           </p>
         </div>
 
-        <form className="login-form" onSubmit={(event) => event.preventDefault()}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-field">
-            <label htmlFor="login-email">Correo electrónico</label>
+            <label htmlFor="login-usuario">Nombre de usuario</label>
             <input
-              autoComplete="email"
-              id="login-email"
-              name="email"
-              placeholder="nombre@correo.com"
+              autoComplete="username"
+              id="login-usuario"
+              name="usuario"
+              placeholder="Ingresa tu nombre de usuario"
               required
-              type="email"
+              type="text"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
             />
           </div>
 
@@ -44,6 +63,8 @@ export default function Login() {
               placeholder="Ingresa tu contraseña"
               required
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

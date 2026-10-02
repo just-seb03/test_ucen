@@ -1,12 +1,16 @@
-import { Route, Routes } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 
 function Perfil() {
-  return null
+  return (
+    <div style={{ padding: '40px', textAlign: 'center', color: '#fff' }}>
+      <h1>Perfil</h1>
+    </div>
+  )
 }
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
@@ -15,5 +19,3 @@ function App() {
     </Routes>
   )
 }
-
-export default App

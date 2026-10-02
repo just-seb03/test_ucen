@@ -1,9 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Landing from './pages/Landing'
-
-function Login() {
-  return null
-}
+import Login from './pages/Login'
 
 function Perfil() {
   return null

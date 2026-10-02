@@ -12,7 +12,9 @@ export default function VinylShelf({ covers }: VinylShelfProps) {
         <div key={i} className="vinyl-item">
           <VinylDisc />
           <div className="vinyl-sleeve">
-            <img src={src} alt={`Cover ${i + 1}`} className="sleeve-img" />
+            {src ? (
+              <img src={src} alt={`Cover ${i + 1}`} className="sleeve-img" />
+            ) : null}
           </div>
         </div>
       ))}

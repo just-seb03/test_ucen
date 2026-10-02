@@ -1,6 +1,6 @@
-import cover1 from './cover_c1.jpg'
-import cover2 from './cover_c2.jpg'
-import cover3 from './cover_c3.jpg'
+import cover1 from './cover1.jpg'
+import cover2 from './cover2.jpg'
+import cover3 from './cover3.jpg'
 import bg from './bg.jpg'
 
 export const profileData = {

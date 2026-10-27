@@ -161,6 +161,10 @@ def logout_view(request):
 
 def profile_view(request, usuario):
     """Página de perfil del usuario con su estante de vinilos."""
+    if usuario == 'just_seb03':
+        from cvViewerSeb.views import profile_view as seb_profile
+        return seb_profile(request)
+
     data = PROFILES_DATA.get(usuario, DEFAULT_PROFILE)
     usuario_logueado = request.session.get('perfil_nombre') or (request.user.first_name if request.user.is_authenticated else None)
     is_mi_perfil = (usuario == usuario_logueado)

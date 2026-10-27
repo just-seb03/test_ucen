@@ -42,7 +42,7 @@ def profile_view(request):
 
 def cv_view(request):
     return render(request, 'cv_viewer.html', {
-        'nombre': 'Martín Cantuarias',
+        'nombre': 'Maximiliano Cantuarias',
         'usuario': 'MCantuarias',
         'app_name': 'cvViewerMasi',
         'rol': 'Desarrollador de Software',

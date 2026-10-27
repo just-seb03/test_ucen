@@ -120,7 +120,11 @@ class WebAppTests(TestCase):
     def test_cv_viewer_views(self):
         res_seb = self.client.get('/cv/seb/')
         self.assertEqual(res_seb.status_code, 200)
-        self.assertContains(res_seb, 'cvViewerSeb')
+        self.assertContains(res_seb, 'just_seb03')
+
+        res_seb_cv = self.client.get('/cv/seb/cv/')
+        self.assertEqual(res_seb_cv.status_code, 200)
+        self.assertContains(res_seb_cv, 'cvViewerSeb')
 
         res_masi = self.client.get('/cv/masi/')
         self.assertEqual(res_masi.status_code, 200)

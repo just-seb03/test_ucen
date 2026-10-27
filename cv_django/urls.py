@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from cvViewerMasi import views as masi_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('perfil/MCantuarias/', masi_views.profile_view, name='profile_masi'),
     path('', include('core.urls')),
     path('cv/seb/', include('cvViewerSeb.urls')),
     path('cv/masi/', include('cvViewerMasi.urls')),
@@ -28,5 +30,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
-
+    urlpatterns += staticfiles_urlpatterns()

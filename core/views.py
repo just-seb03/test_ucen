@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
-from django.templatetags.static import static
 
 # Credenciales válidas y sus nombres de perfil asociados
 VALID_CREDENTIALS = {
@@ -37,17 +36,6 @@ PROFILES_DATA = {
             {'src': '/static/img/Cris5604/cover3.jpg', 'title': 'New Person, Same Old Mistakes', 'artist': 'Tame Impala'},
         ],
         'cv_url': '/cv/vega/',
-    },
-    'MCantuarias': {
-        'bg': '/static/img/MCantuarias/bg.jpg',
-        'artistaName': 'Siames',
-        'bio': 'Me gustan las canciones lentas',
-        'covers': [
-            {'src': '/static/img/MCantuarias/cover1.jpg', 'title': 'Anything', 'artist': 'Adrianne Lenker'},
-            {'src': '/static/img/MCantuarias/cover2.jpg', 'title': 'Selfless', 'artist': 'The Strokes'},
-            {'src': '/static/img/MCantuarias/cover3.jpg', 'title': 'Yours & mine', 'artist': 'Zimmer90'},
-        ],
-        'cv_url': '/cv/masi/',
     },
     'just_seb03': {
         'bg': '/static/img/just_seb03/bg.jpg',

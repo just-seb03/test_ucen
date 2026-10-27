@@ -3,22 +3,22 @@ from django.templatetags.static import static
 
 
 PROFILE_DATA = {
-    'bg': static('cvViewerMasi/img/MCantuarias/bg.jpg'),
+    'bg': static('img/MCantuarias/bg.jpg'),
     'artistaName': 'Siames',
     'bio': 'Me gustan las canciones lentas',
     'covers': [
         {
-            'src': static('cvViewerMasi/img/MCantuarias/cover1.jpg'),
+            'src': static('img/MCantuarias/cover1.jpg'),
             'title': 'Anything',
             'artist': 'Adrianne Lenker',
         },
         {
-            'src': static('cvViewerMasi/img/MCantuarias/cover2.jpg'),
+            'src': static('img/MCantuarias/cover2.jpg'),
             'title': 'Selfless',
             'artist': 'The Strokes',
         },
         {
-            'src': static('cvViewerMasi/img/MCantuarias/cover3.jpg'),
+            'src': static('img/MCantuarias/cover3.jpg'),
             'title': 'Yours & mine',
             'artist': 'Zimmer90',
         },
@@ -31,7 +31,7 @@ def profile_view(request):
     usuario_logueado = request.session.get('perfil_nombre') or (
         request.user.first_name if request.user.is_authenticated else None
     )
-    return render(request, 'cvViewerMasi/profile.html', {
+    return render(request, 'profile.html', {
         'usuario': 'MCantuarias',
         'data': PROFILE_DATA,
         'usuario_logueado': usuario_logueado,
@@ -41,7 +41,7 @@ def profile_view(request):
 
 
 def cv_view(request):
-    return render(request, 'cvViewerMasi/cv_viewer.html', {
+    return render(request, 'cv_viewer.html', {
         'nombre': 'Martín Cantuarias',
         'usuario': 'MCantuarias',
         'app_name': 'cvViewerMasi',

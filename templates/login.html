@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Iniciar Sesión — NEXUS{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="login-page">
+  <a class="login-home-link" href="{% url 'landing' %}">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Volver al inicio
+  </a>
+
+  <form id="login-form" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <div class="cassette-scene">
+      <div class="cassette">
+        <!-- Frente: Usuario (A-SIDE) -->
+        <div class="cassette-face cassette-front">
+          <div class="cassette-plastic">
+            <div class="screw top-left"></div>
+            <div class="screw top-right"></div>
+            <div class="screw bottom-left"></div>
+            <div class="screw bottom-right"></div>
+            
+            <div class="cassette-label-paper">
+              <div class="cassette-title">A-SIDE</div>
+              <input
+                id="username-input"
+                name="usuario"
+                type="text"
+                class="marker-input"
+                placeholder="Ingresa tu usuario"
+                value="{{ form_usuario|default:'' }}"
+                autocomplete="off"
+                spellcheck="false"
+              >
+            </div>
+
+            <div class="cassette-window">
+              <div class="spool left-spool">
+                <div class="spool-hole"></div>
+              </div>
+              <div class="spool right-spool">
+                <div class="spool-hole"></div>
+              </div>
+            </div>
+
+            <div class="cassette-bottom-trapezoid">
+              <div class="tape-head-opening"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dorso: Contraseña (B-SIDE) -->
+        <div class="cassette-face cassette-back">
+          <div class="cassette-plastic">
+            <div class="screw top-left"></div>
+            <div class="screw top-right"></div>
+            <div class="screw bottom-left"></div>
+            <div class="screw bottom-right"></div>
+            
+            <div class="cassette-label-paper b-side">
+              <div class="cassette-title">B-SIDE</div>
+              <button type="button" id="flip-back-btn" class="cassette-flip-back-btn" title="Volver a A-SIDE">
+                ↶ Usuario
+              </button>
+              <input
+                id="password-input"
+                name="password"
+                type="password"
+                class="marker-input"
+                placeholder="Contraseña"
+                autocomplete="current-password"
+              >
+            </div>
+
+            <div class="cassette-window">
+              <div class="spool right-spool">
+                <div class="spool-hole"></div>
+              </div>
+              <div class="spool left-spool">
+                <div class="spool-hole"></div>
+              </div>
+            </div>
+
+            <div class="cassette-bottom-trapezoid">
+              <div class="tape-head-opening"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Mensaje de error -->
+  <div id="login-error-msg" class="login-error-msg {% if error %}show{% endif %}">
+    {{ error|default:"" }}
+  </div>
+
+  <div class="login-instructions">
+    <span>Presiona <strong>Enter</strong> para continuar</span>
+    <button type="button" id="login-submit-btn" class="login-action-btn">Continuar ➔</button>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

@@ -29,6 +29,18 @@ CANCIONES_DEFAULT = [
 ]
 
 
+
 @api_view(['GET'])
-def get_canciones(request):
-    return Response(CANCIONES_DEFAULT, status=status.HTTP_200_OK)
+def lista_albumes(request):
+    """Devuelve la lista completa de álbumes."""
+    return Response(CANCIONES_DEFAULT)
+
+
+@api_view(['POST'])
+def crear_album(request):
+    """Crea un nuevo álbum y lo agrega a la lista."""
+    nuevo_id = max([a['id'] for a in CANCIONES_DEFAULT], default=0) + 1
+    nuevo_album = {k: v for k, v in request.data.items()}
+    nuevo_album['id'] = nuevo_id
+    CANCIONES_DEFAULT.append(nuevo_album)
+    return Response(nuevo_album, status=status.HTTP_201_CREATED)

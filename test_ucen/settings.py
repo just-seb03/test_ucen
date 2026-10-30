@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'msc_seb',
+    'msc_cristian',
+    'msc_masi'
 ]
 
 MIDDLEWARE = [

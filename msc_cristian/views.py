@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 # Create your views here.
 CANCIONES_DEFAULT = [
@@ -23,5 +26,9 @@ CANCIONES_DEFAULT = [
         "fecha_lanzamiento": "2015-07-17",
         "puntuacion": 4,
     }
-
 ]
+
+
+@api_view(['GET'])
+def get_canciones(request):
+    return Response(CANCIONES_DEFAULT, status=status.HTTP_200_OK)

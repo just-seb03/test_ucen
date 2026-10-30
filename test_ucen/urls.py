@@ -1,6 +1,6 @@
 """
 URL configuration for test_ucen project.
-"""
+
 from django.contrib import admin
 from django.urls import path, include
 
@@ -29,4 +29,5 @@ urlpatterns = [
     path('', include('msc_cristian.urls')),
     path('api/', include('msc_cristian.urls')),
     path('msc_masi/', include('msc_masi.urls')),
+    path('msc_seb/', include('msc_seb.urls')),
 ]

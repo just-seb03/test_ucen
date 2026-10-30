@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 albumes = [
     {
@@ -23,3 +25,9 @@ albumes = [
         "puntuacion": "4.67",
     },
 ]
+
+
+@api_view(['GET'])
+def lista_albumes(request):
+    """Devuelve la lista completa de álbumes."""
+    return Response(albumes)

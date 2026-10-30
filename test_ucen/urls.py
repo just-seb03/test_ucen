@@ -1,5 +1,8 @@
 """
 URL configuration for test_ucen project.
+"""
+from django.contrib import admin
+from django.urls import path, include
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -22,5 +25,8 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', RedirectView.as_view(url='msc_masi/', permanent=False)),
     path('admin/', admin.site.urls),
+    path('', RedirectView.as_view(url='msc_cristian/', permanent=False)),
+    path('', include('msc_cristian.urls')),
+    path('api/', include('msc_cristian.urls')),
     path('msc_masi/', include('msc_masi.urls')),
 ]

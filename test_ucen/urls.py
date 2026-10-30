@@ -1,5 +1,5 @@
 """
-URL configuration for cv_django project.
+URL configuration for test_ucen project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -15,19 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from cvViewerMasi import views as masi_views
+from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('perfil/MCantuarias/', masi_views.profile_view, name='profile_masi'),
-    path('', include('core.urls')),
-    path('cv/seb/', include('cvViewerSeb.urls')),
-    path('cv/masi/', include('cvViewerMasi.urls')),
-    path('cv/vega/', include('cvViewerVega.urls')),
 ]
-
-if settings.DEBUG:
-    urlpatterns += staticfiles_urlpatterns()

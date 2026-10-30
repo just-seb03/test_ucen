@@ -1,3 +1,4 @@
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -29,3 +30,12 @@ albumes = [
 @api_view(["GET"])
 def listar_albumes(request):
     return Response(albumes)
+
+@api_view(['POST'])
+def crear_album(request):
+    """Crea un nuevo álbum y lo agrega a la lista."""
+    nuevo_id = max([a['id'] for a in albumes], default=0) + 1
+    nuevo_album = {k: v for k, v in request.data.items()}
+    nuevo_album['id'] = nuevo_id
+    albumes.append(nuevo_album)
+    return Response(nuevo_album, status=status.HTTP_201_CREATED)

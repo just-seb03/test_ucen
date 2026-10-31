@@ -34,5 +34,5 @@ class AlbumesAPITestCase(TestCase):
 
     def test_crear_album_get_interfaz_navegable(self):
         response = self.client.get('/msc_cristian/crear/', HTTP_ACCEPT='text/html')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertIn(b'Django REST framework', response.content)

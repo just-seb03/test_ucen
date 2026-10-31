@@ -1,15 +1,13 @@
-from django.shortcuts import render
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
 
-# Create your views here.
-CANCIONES_DEFAULT = [
+albumes = [
     {
         "id": 1,
         "album": "(What’s the Story) Morning Glory?",
         "Banda": "Oasis",
-        "fecha_lanzamiento": "1005-10-02",
+        "fecha_lanzamiento": "1995-10-02",
         "puntuacion": 4.6,
     },
     {
@@ -25,39 +23,21 @@ CANCIONES_DEFAULT = [
         "Banda": "Tame Impala",
         "fecha_lanzamiento": "2015-07-17",
         "puntuacion": 4,
-    }
+    },
 ]
 
 
-def _guardar_album(data):
-    nuevo_id = max([a['id'] for a in CANCIONES_DEFAULT], default=0) + 1
-    nuevo_album = {k: v for k, v in data.items()}
-    nuevo_album['id'] = nuevo_id
-    CANCIONES_DEFAULT.append(nuevo_album)
-    return nuevo_album
-
-
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def lista_albumes(request):
-    """Devuelve la lista completa de álbumes o crea un nuevo álbum."""
-    if request.method == 'POST':
-        nuevo_album = _guardar_album(request.data)
-        return Response(nuevo_album, status=status.HTTP_201_CREATED)
-    return Response(CANCIONES_DEFAULT)
+    """Devuelve la lista completa de álbumes."""
+    return Response(albumes)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def crear_album(request):
     """Crea un nuevo álbum y lo agrega a la lista."""
-    if request.method == 'GET':
-        return Response({
-            "mensaje": "Envía una petición POST con los datos del álbum para crearlo.",
-            "ejemplo": {
-                "album": "Random Access Memories",
-                "Banda": "Daft Punk",
-                "fecha_lanzamiento": "2013-05-17",
-                "puntuacion": 5
-            }
-        })
-    nuevo_album = _guardar_album(request.data)
+    nuevo_id = max([a['id'] for a in albumes], default=0) + 1
+    nuevo_album = {k: v for k, v in request.data.items()}
+    nuevo_album['id'] = nuevo_id
+    albumes.append(nuevo_album)
     return Response(nuevo_album, status=status.HTTP_201_CREATED)

@@ -1,43 +1,45 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-albumes = [
-    {
-        "id": 1,
-        "album": "(What’s the Story) Morning Glory?",
-        "Banda": "Oasis",
-        "fecha_lanzamiento": "1995-10-02",
-        "puntuacion": 4.6,
-    },
-    {
-        "id": 2,
-        "album": "The New Abnormal",
-        "Banda": "The Strokes",
-        "fecha_lanzamiento": "2020-03-10",
-        "puntuacion": 5,
-    },
-    {
-        "id": 3,
-        "album": "Currents",
-        "Banda": "Tame Impala",
-        "fecha_lanzamiento": "2015-07-17",
-        "puntuacion": 4,
-    },
-]
+from .models import Album
+from .ModelSerializer import AlbumSerializer
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def lista_albumes(request):
-    """Devuelve la lista completa de álbumes."""
-    return Response(albumes)
+    albumes = Album.objects.all()
+    serializer = AlbumSerializer(albumes, many=True)
+    return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def crear_album(request):
-    """Crea un nuevo álbum y lo agrega a la lista."""
-    nuevo_id = max([a['id'] for a in albumes], default=0) + 1
-    nuevo_album = {k: v for k, v in request.data.items()}
-    nuevo_album['id'] = nuevo_id
-    albumes.append(nuevo_album)
-    return Response(nuevo_album, status=status.HTTP_201_CREATED)
+    serializer = AlbumSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET", "PUT", "PATCH", "DELETE"])
+def detalle_album(request, pk):
+    album = get_object_or_404(Album, pk=pk)
+
+    if request.method == "DELETE":
+        album.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    if request.method in ("PUT", "PATCH"):
+        serializer = AlbumSerializer(
+            album,
+            data=request.data,
+            partial=request.method == "PATCH",
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(AlbumSerializer(album).data)

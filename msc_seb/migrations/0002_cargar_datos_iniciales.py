@@ -54,3 +54,4 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(cargar_datos_iniciales, revertir_datos_iniciales),
     ]
+

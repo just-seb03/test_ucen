@@ -1,41 +1,44 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-albumes = [
-    {
-        "id": 1,
-        "album": "BE NOT AFRAID",
-        "artista": "Polyphia",
-        "fecha_lanzamiento": "2024-10-23",
-        "puntuacion": 4.9,
-    },
-    {
-        "id": 2,
-        "album": "Collide With The Sky",
-        "artista": "Pierce The Veil",
-        "fecha_lanzamiento": "2012-07-17",
-        "puntuacion": 4.8,
-    },
-    {
-        "id": 3,
-        "album": "Absolution",
-        "artista": "Muse",
-        "fecha_lanzamiento": "2003-09-15",
-        "puntuacion": 4.7,
-    },
-]
+from .models import Album
+from .ModelSerializer import AlbumSerializer
 
 
-@api_view(["GET"])
-def listar_albumes(request):
-    return Response(albumes)
+class AlbumList(APIView):
+    def get(self, request):
+        albumes = Album.objects.all()
+        serializer = AlbumSerializer(albumes, many=True)
+        return Response(serializer.data)
 
-@api_view(['POST'])
-def crear_album(request):
-    """Crea un nuevo álbum y lo agrega a la lista."""
-    nuevo_id = max([a['id'] for a in albumes], default=0) + 1
-    nuevo_album = {k: v for k, v in request.data.items()}
-    nuevo_album['id'] = nuevo_id
-    albumes.append(nuevo_album)
-    return Response(nuevo_album, status=status.HTTP_201_CREATED)
+    def post(self, request):
+        serializer = AlbumSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AlbumDetail(APIView):
+    def get_object(self, pk):
+        return get_object_or_404(Album, pk=pk)
+
+    def get(self, request, pk):
+        album = self.get_object(pk)
+        serializer = AlbumSerializer(album)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        album = self.get_object(pk)
+        serializer = AlbumSerializer(album, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        album = self.get_object(pk)
+        album.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

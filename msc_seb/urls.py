@@ -1,12 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+from .views import AlbumViewSet
+
+router = DefaultRouter()
+router.register(r'albumes', AlbumViewSet, basename='album')
 
 urlpatterns = [
-    # Ruta raíz de la app (http://127.0.0.1:8000/msc_seb/)
-    path('', views.lista_albumes, name='lista_albumes'),
-    path('albumes/', views.lista_albumes, name='lista_albumes_alt'),
-
-    # Rutas para crear
-    path('crear/', views.crear_album, name='crear_album'),
-    path('albumes/crear/', views.crear_album, name='crear_album_alt'),
+    path('', include(router.urls)),
 ]
